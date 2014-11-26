@@ -1,0 +1,48 @@
+<% if (@message != nil) %>
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= @message %></strong>
+</div>
+<% end %>
+<div class="row well">
+
+  <h1>Listing posts</h1>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Titke</th>
+        <th>Body</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.titke %></td>
+        <td><%= post.body %></td>
+        <td>
+          <%= link_to post, :title => 'Visualizar', :class => 'btn btn-default btn-xs btn-raised withripple' do %>
+          <span class="mdi-image-remove-red-eye"></span>
+          <% end %>
+          <%= link_to edit_post_path(post), :title => 'Editar', :class => 'btn btn-warning btn-xs btn-raised withripple' do %>
+          <span class="mdi-image-remove-red-eye"></span>
+          <% end %>
+
+          <%= link_to post, method: :delete, data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'bottom', original: { title: 'Tooltip on bottom'} }, :title => 'Deletar', :class => 'btn btn-danger btn-xs btn-raised withripple' do %>
+          <span class="mdi-image-remove-red-eye"></span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Post', new_post_path, :class => 'btn btn-success' %>
+
+</div>
+
+data-toggle="tooltip" data-placement="bottom" data-original-title="Tooltip on bottom"
